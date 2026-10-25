@@ -1,28 +1,58 @@
+/**
+ * Транспорт — общий код отправки запросов. Единственное место в проекте, где вызывается `fetch`.
+ *
+ * @module
+ */
+
 import { API_BASE_URL, REQUEST_TIMEOUT_MS } from './config';
 import { apiError, isApiError, type ApiError, type ApiErrorKind } from './errors';
 import { logEvent } from './logger';
 import { getTestScenario, testFetch } from './testMode';
 
-type RequestOptions = {
+/** Настройки запроса. */
+export type RequestOptions = {
+  /** Сигнал отмены от вызывающего кода. */
   signal?: AbortSignal;
-  // Метка маршрута для логов, без query и конкретных id
+  /** Маршрут для лога, без query и без конкретных номеров, например `/products/:id`. */
   route?: string;
 };
 
+/** Успешный ответ. */
 export type JsonResult = {
+  /** Разобранный JSON. Тип `unknown` — что внутри, проверит API-модуль. */
   data: unknown;
+  /** HTTP-статус ответа. */
   status: number;
+  /** Номер запроса. Нужен, чтобы ошибка проверки DTO попала в лог с тем же номером. */
   requestId: string;
 };
 
+/** Счётчик запросов с момента запуска приложения. */
 let requestCounter = 0;
 
+/**
+ * Придумывает номер запроса: время в коротком виде и порядковый номер.
+ *
+ * @returns Номер, например `mva8a7sg-2`.
+ */
 function createRequestId() {
   requestCounter += 1;
   return `${Date.now().toString(36)}-${requestCounter}`;
 }
 
-// Единственное место в проекте, где вызывается fetch
+/**
+ * Отправляет GET-запрос и возвращает разобранный JSON.
+ *
+ * Что делает: добавляет адрес сервера и заголовок `Accept`, ограничивает ожидание 10 секундами,
+ * связывает отмену от хука со своей отменой, проверяет `response.ok` (`fetch` не считает 404 ошибкой),
+ * разбирает JSON, определяет вид ошибки и пишет в лог начало (`http.start`) и конец (`http.end`) запроса.
+ * React state не трогает и ничего не показывает пользователю — только возвращает результат или ошибку.
+ *
+ * @param path - Путь на сервере, например `/products/16`.
+ * @param options - Сигнал отмены и маршрут для лога.
+ * @returns Данные, статус и номер запроса.
+ * @throws `ApiError` одного из видов: `http_error`, `network_error`, `timeout`, `cancel`, `parse_error`.
+ */
 export async function requestJson(path: string, options: RequestOptions = {}): Promise<JsonResult> {
   const requestId = createRequestId();
   const route = options.route ?? path.split('?')[0];
@@ -48,6 +78,7 @@ export async function requestJson(path: string, options: RequestOptions = {}): P
 
   logEvent('http.start', { requestId, method: 'GET', route });
 
+  /** Определяет вид ошибки: сработал таймер — `timeout`, запрос отменили — `cancel`, иначе ответа не было — `network_error`. */
   const toFailure = (error: unknown): ApiError => {
     if (isApiError(error)) return error;
     if (timedOut) return apiError('timeout', `No response in ${REQUEST_TIMEOUT_MS} ms`, status, requestId);

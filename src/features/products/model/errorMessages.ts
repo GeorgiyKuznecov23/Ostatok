@@ -1,5 +1,17 @@
+/**
+ * Понятные человеку тексты ошибок. Код ошибки из сетевого слоя превращается здесь в сообщение на экране.
+ *
+ * @module
+ */
+
 import type { ApiError } from '../../../shared/api/errors';
 
+/**
+ * Текст ошибки для пользователя.
+ *
+ * @param error - Ошибка из сетевого слоя.
+ * @returns Сообщение, например «Нет связи с сервером. Проверьте интернет и попробуйте ещё раз.»
+ */
 export function getErrorMessage(error: ApiError): string {
   switch (error.kind) {
     case 'network_error':
@@ -19,6 +31,13 @@ export function getErrorMessage(error: ApiError): string {
   }
 }
 
+/**
+ * Технические подробности под текстом ошибки: код, HTTP-статус и номер запроса.
+ * По номеру запроса можно найти этот запрос в логах.
+ *
+ * @param error - Ошибка из сетевого слоя.
+ * @returns Строку вроде `network_error, нет ответа, запрос mva8b2rv-4`.
+ */
 export function getErrorDetails(error: ApiError): string {
   const status = error.status === null ? 'нет ответа' : `HTTP ${error.status}`;
   return `${error.kind}, ${status}, запрос ${error.requestId ?? '—'}`;

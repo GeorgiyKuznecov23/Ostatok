@@ -1,3 +1,10 @@
+/**
+ * Русские названия категорий DummyJSON для чипов фильтра и карточек.
+ *
+ * @module
+ */
+
+/** Словарь «код категории → русское название». Все 24 категории DummyJSON. */
 const categoryLabels: Record<string, string> = {
   beauty: 'Косметика',
   fragrances: 'Парфюмерия',
@@ -25,6 +32,12 @@ const categoryLabels: Record<string, string> = {
   'womens-watches': 'Женские часы',
 };
 
+/**
+ * Переводит код категории в русское название.
+ *
+ * @param category - Код категории, например `beauty`.
+ * @returns Русское название, например «Косметика». Если перевода нет — сам код, чтобы приложение не сломалось на новой категории.
+ */
 export function getCategoryLabel(category: string): string {
   return categoryLabels[category] ?? category;
 }

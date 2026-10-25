@@ -1,3 +1,9 @@
+/**
+ * Тесты проверки номера товара из адреса.
+ *
+ * @module
+ */
+
 import { expect, test } from '@jest/globals';
 
 import { parseTopicId } from './topicId';

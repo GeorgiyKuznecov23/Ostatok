@@ -1,3 +1,9 @@
+/**
+ * Тесты защиты от устаревших ответов.
+ *
+ * @module
+ */
+
 import { expect, test } from '@jest/globals';
 
 import { createRequestGuard } from './requestGuard';
@@ -15,6 +21,7 @@ test('поздний ответ старого запроса не заменя�
   const guard = createRequestGuard();
   let shown = '';
 
+  /** Имитация запроса: через `delay` мс показывает `text`, но только если этот запрос всё ещё последний. */
   const load = (text: string, delay: number) => {
     const isActual = guard.start();
     return new Promise<void>((resolve) => {

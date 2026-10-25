@@ -1,3 +1,9 @@
+/**
+ * Панель тестового режима сети. Видна только при разработке (в Expo Go), в собранном приложении её нет.
+ *
+ * @module
+ */
+
 import { useState, useSyncExternalStore } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -9,12 +15,25 @@ import {
 } from '../../../shared/api/testMode';
 import { Chip } from './Chip';
 
-// Панель для проверки ошибок сети. Показывается только в режиме разработки.
+/**
+ * Панель выбора тестового сценария: медленный ответ, задержка 12 с, 404, нет сети, битый JSON, битый DTO.
+ * Нужна, чтобы показать обработку ошибок без отключения интернета.
+ * Сама подмена ответов происходит в `testMode.ts`, панель только выбирает сценарий.
+ *
+ * @returns Сворачиваемую панель с чипами сценариев.
+ */
 export function TestModePanel() {
+  /** Раскрыта ли панель (state). */
   const [open, setOpen] = useState(false);
+  /**
+   * Текущий сценарий. `useSyncExternalStore` подписывается на изменения в `testMode.ts`,
+   * поэтому панели в каталоге и в карточке всегда показывают одно и то же.
+   */
   const scenario = useSyncExternalStore(subscribeTestScenario, getTestScenario);
 
+  /** Русское название текущего сценария для заголовка панели. */
   const currentLabel = testScenarios.find((item) => item.id === scenario)?.label ?? scenario;
+  /** Включена ли подмена. Если да — панель красная. */
   const active = scenario !== 'off';
 
   return (
@@ -46,6 +65,7 @@ export function TestModePanel() {
   );
 }
 
+/** Оформление панели: обычный и «включённый» (красный) вид. */
 const styles = StyleSheet.create({
   panel: {
     marginBottom: 10,

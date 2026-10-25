@@ -1,7 +1,19 @@
+/**
+ * Экран «О приложении»: что это за приложение, откуда данные и как устроены ссылки на товары.
+ *
+ * @module
+ */
+
 import Constants from 'expo-constants';
 import { ScrollView, StyleSheet, Text } from 'react-native';
 
+/**
+ * Экран «О приложении». Только текст, данных с сервера здесь нет.
+ *
+ * @returns Прокручиваемый экран с описанием приложения.
+ */
 export function AboutScreen() {
+  /** Версия приложения из `app.json`. Если прочитать не получилось — прочерк. */
   const version = Constants.expoConfig?.version ?? '—';
 
   return (
@@ -32,6 +44,7 @@ export function AboutScreen() {
   );
 }
 
+/** Оформление экрана: отступы, размеры и цвета текста. */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

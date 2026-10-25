@@ -1,9 +1,17 @@
+/**
+ * Тесты транспорта: как различаются ошибки, timeout, отмена и логи.
+ * Настоящий сервер не используется: `fetch` подменяется.
+ *
+ * @module
+ */
+
 import { afterEach, beforeEach, expect, jest, test } from '@jest/globals';
 
 import { requestJson } from './transportService';
 
-// Настоящая сеть в тестах не используется, fetch подменяется
+/** Подменённый `fetch`: в каждом тесте задаём, что он «ответит». */
 const fetchMock = jest.spyOn(globalThis, 'fetch');
+/** Подменённый `console.info`: перехватывает логи, чтобы их проверить и не засорять вывод тестов. */
 const infoMock = jest.spyOn(console, 'info').mockImplementation(() => {});
 
 beforeEach(() => {
@@ -15,6 +23,13 @@ afterEach(() => {
   jest.useRealTimers();
 });
 
+/**
+ * Поддельный запрос, который никогда не отвечает, а только ждёт отмены.
+ * Нужен для тестов отмены и timeout.
+ *
+ * @param signal - Сигнал отмены.
+ * @returns Promise, который завершится ошибкой при отмене.
+ */
 function waitForAbort(signal: AbortSignal) {
   return new Promise<Response>((_, reject) => {
     signal.addEventListener('abort', () => reject(new Error('Aborted')));

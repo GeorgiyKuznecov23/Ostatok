@@ -1,3 +1,9 @@
+/**
+ * Экран каталога: поиск, фильтры, список товаров, отметки «в дозаказ».
+ *
+ * @module
+ */
+
 import { router, useFocusEffect } from 'expo-router';
 import { useCallback, useRef } from 'react';
 import {
@@ -20,20 +26,40 @@ import { LoadingView, MessageView } from './StatusView';
 import { TestModePanel } from './TestModePanel';
 import { TopicCard } from './TopicCard';
 
-// В Hermes есть глобальный объект HermesInternal
+/**
+ * Работает ли приложение на движке Hermes. У Hermes есть глобальный объект `HermesInternal`.
+ * Результат выводится внизу списка.
+ */
 const usesHermes = 'HermesInternal' in globalThis;
 
+/**
+ * Экран каталога.
+ *
+ * Вся логика — в хуке `useCatalog`, экран только рисует. По состоянию загрузки показывает
+ * индикатор, сообщение об ошибке или список. Нажатие на товар открывает карточку `/topic/номер`.
+ *
+ * @returns Экран со строкой поиска, фильтрами, списком и счётчиком отметок.
+ */
 export function CatalogScreen() {
+  /** Всё состояние и все действия каталога. */
   const catalog = useCatalog();
 
-  // Защита от двойного нажатия: пока открывается карточка, второй переход не делаем
+  /**
+   * Флажок «карточка уже открывается» — защита от двойного нажатия.
+   * `useRef` хранит значение между отрисовками, но его изменение не перерисовывает экран.
+   */
   const opening = useRef(false);
+  /** Когда каталог снова на экране (вернулись из карточки), снимаем флажок — можно открывать снова. */
   useFocusEffect(
     useCallback(() => {
       opening.current = false;
     }, []),
   );
 
+  /**
+   * Открыть карточку товара. Передаётся только номер, а не весь товар.
+   * В демо-режиме дописывается `demo=1`, чтобы карточка взяла товар из демо-данных.
+   */
   const openTopic = (id: string) => {
     if (opening.current) return;
     opening.current = true;
@@ -43,6 +69,7 @@ export function CatalogScreen() {
     });
   };
 
+  /** Как нарисовать один элемент списка: карточка товара с отметкой «в дозаказ». */
   const renderItem: ListRenderItem<Topic> = ({ item }) => (
     <TopicCard
       topic={item}
@@ -52,6 +79,10 @@ export function CatalogScreen() {
     />
   );
 
+  /**
+   * Основная часть экрана по состоянию загрузки:
+   * загрузка — индикатор, ошибка — сообщение с кнопками «Повторить» и «Показать демо-данные», иначе — список.
+   */
   const renderBody = () => {
     if (catalog.status === 'loading') {
       return <LoadingView text="Загружаем товары с сервера…" />;
@@ -200,6 +231,7 @@ export function CatalogScreen() {
   );
 }
 
+/** Оформление экрана каталога. */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

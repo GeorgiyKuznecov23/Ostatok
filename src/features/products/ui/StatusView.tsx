@@ -1,5 +1,17 @@
+/**
+ * Экраны состояний: загрузка и сообщение (ошибка, «не найдено», неверный адрес).
+ *
+ * @module
+ */
+
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
+/**
+ * Индикатор загрузки по центру экрана с подписью.
+ *
+ * @param props - `text` — подпись под индикатором.
+ * @returns Крутящийся индикатор и текст.
+ */
 export function LoadingView({ text }: { text: string }) {
   return (
     <View style={styles.container}>
@@ -9,18 +21,33 @@ export function LoadingView({ text }: { text: string }) {
   );
 }
 
-type MessageButton = {
+/** Кнопка в сообщении. */
+export type MessageButton = {
+  /** Надпись на кнопке. */
   label: string;
+  /** Что сделать при нажатии. */
   onPress: () => void;
 };
 
-type MessageViewProps = {
+/** Props сообщения. */
+export type MessageViewProps = {
+  /** Заголовок, например «Не удалось загрузить товары». */
   title: string;
+  /** Пояснение для пользователя. */
   text: string;
+  /** Технические подробности мелким шрифтом (код ошибки, номер запроса). Необязательно. */
   details?: string;
+  /** Кнопки. Первая — главная (закрашенная), остальные — с рамкой. */
   buttons: MessageButton[];
 };
 
+/**
+ * Сообщение по центру экрана: заголовок, текст, подробности и кнопки.
+ * Используется для ошибок сети, «Товар не найден», «Неверный номер товара» и «Страница не найдена».
+ *
+ * @param props - Заголовок, текст, подробности и список кнопок.
+ * @returns Блок сообщения.
+ */
 export function MessageView({ title, text, details, buttons }: MessageViewProps) {
   return (
     <View style={styles.container}>
@@ -42,6 +69,7 @@ export function MessageView({ title, text, details, buttons }: MessageViewProps)
   );
 }
 
+/** Оформление экранов загрузки и сообщения. */
 const styles = StyleSheet.create({
   container: {
     flex: 1,

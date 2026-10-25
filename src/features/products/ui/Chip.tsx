@@ -1,11 +1,27 @@
+/**
+ * Кнопка-«таблетка» для фильтров (категории, «Только заканчивающиеся», тестовый режим).
+ *
+ * @module
+ */
+
 import { Pressable, StyleSheet, Text } from 'react-native';
 
-type ChipProps = {
+/** Props чипа. */
+export type ChipProps = {
+  /** Надпись на чипе. */
   label: string;
+  /** Выбран ли чип. Выбранный закрашивается синим. */
   active: boolean;
+  /** Что сделать при нажатии. */
   onPress: () => void;
 };
 
+/**
+ * Чип фильтра. Сам ничего не помнит: выбран он или нет, решает тот, кто его рисует.
+ *
+ * @param props - Надпись, выбран ли чип и обработчик нажатия.
+ * @returns Нажимаемую «таблетку» с текстом.
+ */
 export function Chip({ label, active, onPress }: ChipProps) {
   return (
     <Pressable onPress={onPress} style={[styles.chip, active && styles.chipActive]}>
@@ -14,6 +30,7 @@ export function Chip({ label, active, onPress }: ChipProps) {
   );
 }
 
+/** Оформление чипа: обычный и выбранный вид. */
 const styles = StyleSheet.create({
   chip: {
     paddingHorizontal: 12,

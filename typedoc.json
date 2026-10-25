@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "Остаток",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "exclude": ["**/*.test.ts"],
+  "out": "docs/typedoc",
+  "readme": "README.md",
+  "sort": ["source-order"],
+  "excludePrivate": false,
+  "excludeNotDocumented": false,
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}

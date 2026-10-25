@@ -1,0 +1,283 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Остаток</title><meta name="description" content="Documentation for Остаток"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar">
+<div class="tsd-toolbar-contents container"><a href="index.html" class="title">Остаток</a>
+<div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/>
+<ul role="listbox" id="tsd-search-results"></ul>
+<div id="tsd-search-status" aria-live="polite" aria-atomic="true">
+<div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header>
+<div class="container container-main">
+<div class="col-content">
+<div class="tsd-page-title">
+<h1>Остаток</h1></div>
+<div class="tsd-panel tsd-typography"><h1 id="остаток" class="tsd-anchor-link">Остаток<a href="#остаток" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1>
+<p>Мобильный справочник товаров и складских остатков. Учебный проект по дисциплине «Разработка мобильных приложений», 5 семестр.</p>
+<h2 id="о-приложении" class="tsd-anchor-link">О приложении<a href="#о-приложении" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Продавцу в магазине постоянно задают вопрос «а это есть?». Остатки обычно смотрят в учётной программе на компьютере, и чтобы ответить, приходится уходить из зала или звонить на склад. «Остаток» решает эту задачу с телефона: находишь товар по названию, открываешь карточку и видишь, сколько штук осталось на складе. Позиции, которые заканчиваются, выделены отдельно, их можно сразу отметить для дозаказа.</p>
+<ul>
+<li><strong>Тематика:</strong> справочник товаров и остатков склада</li>
+<li><strong>Аудитория:</strong> продавцы-консультанты и товароведы небольших магазинов</li>
+<li><strong>Источник данных:</strong> открытый API <a href="https://dummyjson.com/docs/products">DummyJSON</a>, раздел products (с Sprint 4)</li>
+</ul>
+<h2 id="основной-сценарий" class="tsd-anchor-link">Основной сценарий<a href="#основной-сценарий" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ol>
+<li>Покупатель спрашивает о товаре.</li>
+<li>Продавец открывает приложение и вводит часть названия.</li>
+<li>Находит товар в списке и открывает карточку.</li>
+<li>Видит остаток, артикул и статус: в наличии или заканчивается.</li>
+<li>Если товара мало, отмечает его для дозаказа.</li>
+</ol>
+<h2 id="первая-версия-mvp" class="tsd-anchor-link">Первая версия (MVP)<a href="#первая-версия-mvp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li>список товаров: название, категория, остаток, картинка</li>
+<li>поиск по названию</li>
+<li>фильтр по категории и «только заканчивающиеся»</li>
+<li>карточка товара</li>
+<li>отметка товаров для дозаказа и счётчик отмеченных</li>
+</ul>
+<p>Изменять остатки в первой версии нельзя, приложение работает только на просмотр.</p>
+<p>Подробное описание продукта лежит в <a href="media/product-concept.md">docs/product-concept.md</a>, пользовательские истории в <a href="media/backlog.md">docs/backlog.md</a>, история изменений в <a href="media/CHANGELOG.md">CHANGELOG.md</a>, ретроспектива спринтов в <a href="media/retro.md">docs/retro.md</a>. Контракт API и команды curl — в <a href="media/api.md">docs/api.md</a>, протокол сетевых проверок и разбор логов — в <a href="media/network-checks.md">docs/network-checks.md</a>, карта экранов, схема данных и проверки навигации — в <a href="media/navigation.md">docs/navigation.md</a>.</p>
+<h2 id="запуск" class="tsd-anchor-link">Запуск<a href="#запуск" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Нужны Node.js LTS и приложение Expo Go на телефоне. Телефону нужен интернет: товары загружаются с <code>https://dummyjson.com</code>.</p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">install</span><br/><span class="hl-0">npx</span><span class="hl-1"> </span><span class="hl-0">expo</span><span class="hl-1"> </span><span class="hl-0">start</span>
+</code><button>Copy</button></pre>
+
+<p>В терминале появится QR-код. На Android его нужно отсканировать в Expo Go, на iPhone — камерой. Телефон и компьютер должны быть в одной Wi-Fi сети. Если не подключается, можно запустить через туннель: <code>npx expo start --tunnel</code>.</p>
+<p>Типы маршрутов (typed routes) генерируются при запуске <code>npx expo start</code> в папку <code>.expo/types</code>. Поэтому после первого клонирования проекта сначала один раз запустить <code>npx expo start</code>, а потом <code>npm run typecheck</code>.</p>
+<p>Проверки:</p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">typecheck</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">lint</span><br/><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">test</span>
+</code><button>Copy</button></pre>
+
+<p><code>npm test</code> запускает автотесты: проверку DTO и преобразования в <code>Topic</code>, обработку ошибок в <code>transportService</code> (fetch в тестах подменяется, к настоящему API они не обращаются) и защиту от устаревшего ответа.</p>
+<h2 id="документация-кода-typedoc" class="tsd-anchor-link">Документация кода (TypeDoc)<a href="#документация-кода-typedoc" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>У каждого файла, функции, хука, компонента, типа и поля в <code>src</code> есть комментарий в формате TSDoc (<code>/** ... */</code>). Из них TypeDoc собирает сайт с документацией:</p>
+<pre><code><span class="hl-0">npm</span><span class="hl-1"> </span><span class="hl-0">run</span><span class="hl-1"> </span><span class="hl-0">docs</span>
+</code><button>Copy</button></pre>
+
+<p>Результат — <code>docs/typedoc/index.html</code>, открывается в браузере. Настройки — в <code>typedoc.json</code>: документируется вся папка <code>src</code>, кроме тестов. Включена проверка <code>validation.notDocumented</code>: если у чего-то нет комментария, TypeDoc выдаст предупреждение (сейчас предупреждений нет).</p>
+<p>Пользовательские сценарии и то, что при каждом из них вызывается в коде, — в презентации <code>Презентация — use-case.pptx</code>.</p>
+<h2 id="что-умеет-сейчас" class="tsd-anchor-link">Что умеет сейчас<a href="#что-умеет-сейчас" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li><strong>Каталог с сервера.</strong> При открытии загружается весь каталог DummyJSON (194 товара). Пока идёт загрузка, виден индикатор.</li>
+<li><strong>Поиск</strong> по названию или артикулу, регистр не важен, срабатывает через 300 мс после последней буквы.</li>
+<li><strong>Фильтры:</strong> по категории (чипы, «Все» снимает фильтр) и «Только заканчивающиеся» (остаток меньше 10 штук). «Сбросить» очищает поиск и фильтры.</li>
+<li><strong>Порции:</strong> список показывается по 20 карточек, следующие 20 добавляются при прокрутке до конца или кнопкой «Показать ещё».</li>
+<li><strong>Карточка товара</strong> — отдельный экран с адресом <code>/topic/{id}</code>. Она сама загружает товар с сервера по id: бренд, артикул, цена, остаток, минимальная партия заказа, описание. Стрелка «Назад» в шапке или системная «Назад» возвращает к тому же списку: поиск, фильтры и место прокрутки не теряются.</li>
+<li><strong>Ссылка на товар:</strong> карточку можно открыть по прямой ссылке, даже если каталог ещё не открывали. Если истории переходов нет, в шапке кнопка «В каталог».</li>
+<li><strong>Вкладки:</strong> «Каталог» и «О приложении».</li>
+<li><strong>Ошибки адреса:</strong> неизвестный адрес — «Страница не найдена», нечисловой id — «Неверный номер товара» (без запроса к серверу), товара нет на сервере — «Товар не найден».</li>
+<li><strong>Дозаказ:</strong> кнопка «+ В дозаказ» на карточке в списке и на экране товара, счётчик внизу каталога. Отметки общие для обоих экранов.</li>
+<li><strong>Ошибки:</strong> если сервер недоступен или ответил ошибкой, показывается понятная причина, код ошибки и кнопка «Повторить».</li>
+<li><strong>Демо-режим:</strong> при ошибке можно явно включить тестовые данные. Сверху появляется плашка «Демо-данные» и ссылка «Вернуться к сети».</li>
+</ul>
+<h2 id="навигация" class="tsd-anchor-link">Навигация<a href="#навигация" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Используется Expo Router, маршруты лежат в <code>src/app/</code>. Там только маршруты и layout, экраны, hooks и API — в <code>src/features/</code>, <code>src/api/</code> и <code>src/shared/</code>.</p>
+<pre><code><span class="hl-0">src</span><span class="hl-1">/</span><span class="hl-0">app</span><span class="hl-1">/</span><br/><span class="hl-1">  </span><span class="hl-0">_layout</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">           </span><span class="hl-0">корневой</span><span class="hl-1"> </span><span class="hl-0">Stack</span><span class="hl-1"> </span><span class="hl-0">и</span><span class="hl-1"> </span><span class="hl-0">SelectionProvider</span><br/><span class="hl-1">  (</span><span class="hl-0">tabs</span><span class="hl-1">)/</span><span class="hl-0">_layout</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">    </span><span class="hl-0">вкладки</span><br/><span class="hl-1">  (</span><span class="hl-0">tabs</span><span class="hl-1">)/</span><span class="hl-0">index</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">      </span><span class="hl-2">каталог</span><span class="hl-1">: /</span><br/><span class="hl-1">  (</span><span class="hl-0">tabs</span><span class="hl-1">)/</span><span class="hl-0">about</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">      </span><span class="hl-0">о</span><span class="hl-1"> </span><span class="hl-2">приложении</span><span class="hl-1">: /</span><span class="hl-0">about</span><br/><span class="hl-1">  </span><span class="hl-0">topic</span><span class="hl-1">/[</span><span class="hl-0">id</span><span class="hl-1">].</span><span class="hl-0">tsx</span><span class="hl-1">        </span><span class="hl-2">карточка</span><span class="hl-1">: /</span><span class="hl-0">topic</span><span class="hl-1">/</span><span class="hl-3">1</span><br/><span class="hl-1">  +</span><span class="hl-0">not</span><span class="hl-1">-</span><span class="hl-0">found</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">        </span><span class="hl-0">неизвестный</span><span class="hl-1"> </span><span class="hl-0">адрес</span>
+</code><button>Copy</button></pre>
+
+<ul>
+<li>Переход из каталога: <code>router.push({ pathname: '/topic/[id]', params: { id } })</code>. Через адрес передаётся только id, никаких объектов. Включены typed routes (<code>experiments.typedRoutes</code> в <code>app.json</code>): TypeScript проверяет, что адрес существует и id передан.</li>
+<li>Карточка читает id через <code>useLocalSearchParams</code> и проверяет его во время работы (<code>parseTopicId</code>: целое число больше нуля). Тип параметра не гарантирует, что в адресе действительно число.</li>
+<li>Назад: если есть история — <code>router.back()</code>, иначе — <code>router.replace('/')</code>.</li>
+<li>Двойное нажатие на товар не открывает две карточки: пока переход не закончился, повторные нажатия игнорируются.</li>
+</ul>
+<p>Прямая ссылка:</p>
+<table>
+<thead>
+<tr>
+<th>Где</th>
+<th>Ссылка</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expo Go</td>
+<td><code>exp://АДРЕС:8081/--/topic/1</code>, <code>АДРЕС</code> — из строки <code>Metro waiting on exp://...</code> в терминале</td>
+</tr>
+<tr>
+<td>Expo Web</td>
+<td><code>http://localhost:8081/topic/1</code></td>
+</tr>
+<tr>
+<td>development build</td>
+<td><code>ostatok://topic/1</code> (схема <code>ostatok</code> в <code>app.json</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Проверено: Android, Expo Go <!-- впиши модель телефона -->; Expo Web (Chrome), <code>http://localhost:8081/topic/1</code>.</p>
+<p>Правила хранения состояния:</p>
+<ul>
+<li>в адресе — только id карточки и признак демо-режима <code>?demo=1</code>;</li>
+<li>поиск, фильтры и прокрутка — state экрана каталога. Каталог остаётся смонтированным под карточкой, поэтому при «Назад» ничего не теряется;</li>
+<li>данные карточки — state <code>useTopic</code>, при закрытии карточки удаляются;</li>
+<li>отметки для дозаказа — <code>SelectionProvider</code> над навигацией, общие для всех экранов;</li>
+<li>после перезапуска приложения всё начинается заново, постоянного хранения нет.</li>
+</ul>
+<p>Подробные схемы — в <a href="media/navigation.md">docs/navigation.md</a>.</p>
+<h2 id="работа-с-сетью" class="tsd-anchor-link">Работа с сетью<a href="#работа-с-сетью" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<h3 id="цепочка-запроса" class="tsd-anchor-link">Цепочка запроса<a href="#цепочка-запроса" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<pre><code><span class="hl-0">CatalogScreen</span><span class="hl-1"> → </span><span class="hl-0">useCatalog</span><span class="hl-1"> → </span><span class="hl-0">useProductList</span><span class="hl-1"> → </span><span class="hl-0">apiManager</span><span class="hl-1">.</span><span class="hl-0">products</span><span class="hl-1">.</span><span class="hl-4">list</span><span class="hl-1">() → </span><span class="hl-0">transportService</span><span class="hl-1">.</span><span class="hl-4">requestJson</span><span class="hl-1">() → </span><span class="hl-0">fetch</span><span class="hl-1"> → </span><span class="hl-0">DummyJSON</span><br/><span class="hl-0">TopicScreen</span><span class="hl-1">   → </span><span class="hl-0">useTopic</span><span class="hl-1">                    → </span><span class="hl-0">apiManager</span><span class="hl-1">.</span><span class="hl-0">products</span><span class="hl-1">.</span><span class="hl-4">getById</span><span class="hl-1">(</span><span class="hl-0">id</span><span class="hl-1">) → </span><span class="hl-0">transportService</span><span class="hl-1">.</span><span class="hl-4">requestJson</span><span class="hl-1">() → </span><span class="hl-0">fetch</span><span class="hl-1"> → </span><span class="hl-0">DummyJSON</span>
+</code><button>Copy</button></pre>
+
+<ul>
+<li><strong>transportService</strong> (<code>src/shared/api/transportService.ts</code>) — единственное место, где вызывается <code>fetch</code>. Здесь base URL, заголовок <code>Accept</code>, timeout 10 секунд, отмена через <code>AbortController</code>, разбор JSON, разделение ошибок и логи. React state он не трогает.</li>
+<li><strong>apiManager</strong> (<code>src/api/apiManager.ts</code>) объединяет тематические модули. Сейчас модуль один — <code>products</code>, методы <code>list()</code> и <code>getById(id)</code>. В <code>src/api/products/</code> лежат маршруты, тип ответа сервера <code>ProductDto</code>, проверка ответа (<code>parseProduct</code>, <code>parseProductList</code>) и превращение DTO в модель приложения <code>Topic</code> (<code>toTopic</code>).</li>
+<li><strong>hooks</strong> (<code>useProductList</code>, <code>useTopic</code>) вызывают apiManager, хранят состояние загрузки и превращают код ошибки в текст для пользователя.</li>
+</ul>
+<p>Проверить, что обходов нет: поиск <code>fetch(</code> с учётом регистра по папке <code>src</code> находит вызов только в <code>transportService.ts</code>. Без учёта регистра найдётся ещё объявление функции <code>testFetch(</code> в <code>testMode.ts</code> — это подмена для тестового режима, а не запрос.</p>
+<p>Base URL и timeout лежат в одном месте: <code>src/shared/api/config.ts</code>. Ключей и авторизации у DummyJSON нет, секретов в проекте нет.</p>
+<h3 id="ошибки" class="tsd-anchor-link">Ошибки<a href="#ошибки" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<table>
+<thead>
+<tr>
+<th>Код</th>
+<th>Когда</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http_error</code></td>
+<td>сервер ответил, но со статусом не 2xx (например 404)</td>
+</tr>
+<tr>
+<td><code>network_error</code></td>
+<td>ответа нет совсем: нет интернета, не найден адрес</td>
+</tr>
+<tr>
+<td><code>timeout</code></td>
+<td>нет ответа за 10 секунд, запрос отменён</td>
+</tr>
+<tr>
+<td><code>cancel</code></td>
+<td>запрос отменён, потому что пользователь ушёл с экрана или начал новую загрузку. Пользователю не показывается</td>
+</tr>
+<tr>
+<td><code>parse_error</code></td>
+<td>ответ пришёл, но это не JSON</td>
+</tr>
+<tr>
+<td><code>contract_error</code></td>
+<td>JSON пришёл, но поля не те, что ожидаются (проверка DTO)</td>
+</tr>
+</tbody>
+</table>
+<p>Карточка отдельно обрабатывает 404: «Товар не найден» вместо общей ошибки.</p>
+<h3 id="стратегия-поиска-и-порций" class="tsd-anchor-link">Стратегия поиска и порций<a href="#стратегия-поиска-и-порций" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>Каталог загружается <strong>одним запросом</strong> <code>GET /products?limit=0&amp;select=...</code> — DummyJSON отдаёт все 194 товара, ответ около 80 КБ. Поиск, фильтры и порции дальше работают <strong>локально</strong> по этому набору:</p>
+<ul>
+<li>поиск идёт по всему каталогу DummyJSON на момент загрузки, а не по одной странице;</li>
+<li>«порции» — это вывод уже загруженных данных по 20 штук, новых запросов при прокрутке нет;</li>
+<li>чтобы получить свежие данные, нужно нажать «Обновить».</li>
+</ul>
+<p>Почему не серверная pagination: у DummyJSON есть <code>limit/skip</code> и <code>/products/search</code>, но поиск нельзя совместить с фильтром по категории и по остатку в одном запросе. При 194 товарах проще и честнее загрузить всё и фильтровать на телефоне. Если каталог вырастет до тысяч товаров, нужно будет перейти на серверный поиск с <code>limit/skip</code>.</p>
+<h3 id="отмена-и-гонки" class="tsd-anchor-link">Отмена и гонки<a href="#отмена-и-гонки" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li>Каждый запрос получает свой <code>AbortController</code>. В cleanup эффекта вызывается <code>abort()</code>: при закрытии карточки, смене id или новой загрузке старый запрос отменяется.</li>
+<li>Дополнительно hook помнит номер последнего запроса (<code>createRequestGuard</code>). Ответ старого запроса не меняет данные, ошибку и индикатор, даже если он пришёл позже.</li>
+<li>Во время загрузки вместо кнопки «Повторить» показан индикатор, поэтому второй такой же запрос запустить нельзя.</li>
+</ul>
+<h3 id="логи" class="tsd-anchor-link">Логи<a href="#логи" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<p>В режиме разработки каждый запрос пишет в консоль два события в JSON:</p>
+<pre><code><span class="hl-1">{</span><span class="hl-5">&quot;event&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;http.start&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;timestamp&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;...&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;requestId&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;mva8a7sg-2&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;method&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;GET&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;route&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;/products/:id&quot;</span><span class="hl-1">}</span><br/><span class="hl-1">{</span><span class="hl-5">&quot;event&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;http.end&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;timestamp&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;...&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;requestId&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;mva8a7sg-2&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;method&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;GET&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;route&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;/products/:id&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;status&quot;</span><span class="hl-1">:</span><span class="hl-3">200</span><span class="hl-1">,</span><span class="hl-5">&quot;outcome&quot;</span><span class="hl-1">:</span><span class="hl-5">&quot;success&quot;</span><span class="hl-1">,</span><span class="hl-5">&quot;durationMs&quot;</span><span class="hl-1">:</span><span class="hl-3">140</span><span class="hl-1">}</span>
+</code><button>Copy</button></pre>
+
+<p><code>requestId</code> связывает начало и конец одного запроса, <code>route</code> — шаблон маршрута без query и без конкретного id, <code>status</code> — HTTP-статус или <code>null</code>, если ответа не было, <code>outcome</code> — итог. При ошибке проверки DTO дополнительно пишется <code>api.contract_error</code> с тем же <code>requestId</code>. В логи не попадают тела ответов, поисковые строки и заголовки. В release-сборке логи выключены (<code>__DEV__</code>).</p>
+<p>Где смотреть: логи появляются в терминале, где запущен <code>npx expo start</code>. Ещё можно нажать в терминале <code>j</code>, откроется React Native DevTools, вкладка Console. Чтобы найти один запрос, удобно вставить его <code>requestId</code> в фильтр консоли.</p>
+<h3 id="демо-режим-и-тестовый-режим" class="tsd-anchor-link">Демо-режим и тестовый режим<a href="#демо-режим-и-тестовый-режим" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<ul>
+<li><strong>Демо-данные</strong> (<code>src/features/products/data/fixtures.ts</code>, 12 товаров) включаются только кнопкой «Показать демо-данные» на экране ошибки. Пока они на экране, сверху висит плашка «Демо-данные». Тестовые данные никогда не подставляются вместо ответа сервера молча.</li>
+<li><strong>Тестовый режим сети</strong> (<code>src/shared/api/testMode.ts</code>) нужен, чтобы воспроизвести ошибки без отключения интернета. Он есть только в режиме разработки: панель «Тестовый режим сети» сверху каталога и карточки. Сценарии: медленный ответ 3 с, задержка 12 с, HTTP 404, нет сети, битый JSON, битый DTO. Подмена работает внутри transportService, поэтому timeout, логи и проверка ответа срабатывают по-настоящему. Когда режим включён, панель красная.</li>
+</ul>
+<h2 id="структура-проекта" class="tsd-anchor-link">Структура проекта<a href="#структура-проекта" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<pre><code><span class="hl-0">src</span><span class="hl-1">/</span><span class="hl-0">app</span><span class="hl-1">/                              </span><span class="hl-4">маршруты</span><span class="hl-1"> (</span><span class="hl-0">см</span><span class="hl-1">. «</span><span class="hl-0">Навигация</span><span class="hl-1">»)</span><br/><span class="hl-0">src</span><span class="hl-1">/</span><span class="hl-0">features</span><span class="hl-1">/</span><span class="hl-0">about</span><span class="hl-1">/</span><span class="hl-0">AboutScreen</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">    </span><span class="hl-0">экран</span><span class="hl-1"> «</span><span class="hl-6">О</span><span class="hl-1"> </span><span class="hl-0">приложении</span><span class="hl-1">»</span><br/><span class="hl-0">src</span><span class="hl-1">/</span><span class="hl-0">shared</span><span class="hl-1">/</span><span class="hl-0">api</span><span class="hl-1">/</span><br/><span class="hl-1">  </span><span class="hl-0">config</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                           </span><span class="hl-0">base</span><span class="hl-1"> </span><span class="hl-6">URL</span><span class="hl-1"> </span><span class="hl-0">и</span><span class="hl-1"> </span><span class="hl-0">timeout</span><br/><span class="hl-1">  </span><span class="hl-0">errors</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                           </span><span class="hl-0">типы</span><span class="hl-1"> </span><span class="hl-0">ошибок</span><br/><span class="hl-1">  </span><span class="hl-0">logger</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                           </span><span class="hl-0">логи</span><span class="hl-1"> </span><span class="hl-0">запросов</span><br/><span class="hl-1">  </span><span class="hl-0">transportService</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                 </span><span class="hl-0">fetch</span><span class="hl-1">, </span><span class="hl-0">timeout</span><span class="hl-1">, </span><span class="hl-0">отмена</span><span class="hl-1">, </span><span class="hl-0">ошибки</span><span class="hl-1">, </span><span class="hl-0">логи</span><br/><span class="hl-1">  </span><span class="hl-0">testMode</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                         </span><span class="hl-0">подмена</span><span class="hl-1"> </span><span class="hl-0">ответов</span><span class="hl-1"> </span><span class="hl-0">для</span><span class="hl-1"> </span><span class="hl-0">проверки</span><span class="hl-1"> </span><span class="hl-0">ошибок</span><br/><span class="hl-0">src</span><span class="hl-1">/</span><span class="hl-0">api</span><span class="hl-1">/</span><br/><span class="hl-1">  </span><span class="hl-0">apiManager</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                       { </span><span class="hl-0">products</span><span class="hl-1"> }</span><br/><span class="hl-1">  </span><span class="hl-0">products</span><span class="hl-1">/</span><span class="hl-0">productDto</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">              </span><span class="hl-0">ProductDto</span><span class="hl-1">, </span><span class="hl-0">проверка</span><span class="hl-1"> </span><span class="hl-0">ответа</span><span class="hl-1">, </span><span class="hl-0">toTopic</span><br/><span class="hl-1">  </span><span class="hl-0">products</span><span class="hl-1">/</span><span class="hl-0">productsApi</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">             </span><span class="hl-4">list</span><span class="hl-1">(), </span><span class="hl-4">getById</span><span class="hl-1">()</span><br/><span class="hl-0">src</span><span class="hl-1">/</span><span class="hl-0">features</span><span class="hl-1">/</span><span class="hl-0">products</span><span class="hl-1">/</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">Topic</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                      </span><span class="hl-0">модель</span><span class="hl-1"> </span><span class="hl-0">товара</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">stock</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                      </span><span class="hl-0">статус</span><span class="hl-1"> </span><span class="hl-0">остатка</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">categories</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                 </span><span class="hl-0">русские</span><span class="hl-1"> </span><span class="hl-0">названия</span><span class="hl-1"> </span><span class="hl-0">категорий</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">filter</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                     </span><span class="hl-0">поиск</span><span class="hl-1"> </span><span class="hl-0">и</span><span class="hl-1"> </span><span class="hl-0">фильтры</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">requestGuard</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">               </span><span class="hl-0">защита</span><span class="hl-1"> </span><span class="hl-0">от</span><span class="hl-1"> </span><span class="hl-0">устаревших</span><span class="hl-1"> </span><span class="hl-0">ответов</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">errorMessages</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">              </span><span class="hl-0">тексты</span><span class="hl-1"> </span><span class="hl-0">ошибок</span><span class="hl-1"> </span><span class="hl-0">для</span><span class="hl-1"> </span><span class="hl-0">пользователя</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">useProductList</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">             </span><span class="hl-0">загрузка</span><span class="hl-1"> </span><span class="hl-0">списка</span><span class="hl-1">, </span><span class="hl-0">демо</span><span class="hl-1">-</span><span class="hl-0">режим</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">useCatalog</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                 </span><span class="hl-0">поиск</span><span class="hl-1">, </span><span class="hl-0">фильтры</span><span class="hl-1">, </span><span class="hl-0">порции</span><span class="hl-1">, </span><span class="hl-0">дозаказ</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">useTopic</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                   </span><span class="hl-0">загрузка</span><span class="hl-1"> </span><span class="hl-0">одной</span><span class="hl-1"> </span><span class="hl-0">карточки</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">topicId</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                    </span><span class="hl-0">проверка</span><span class="hl-1"> </span><span class="hl-0">id</span><span class="hl-1"> </span><span class="hl-0">из</span><span class="hl-1"> </span><span class="hl-0">адреса</span><br/><span class="hl-1">  </span><span class="hl-0">model</span><span class="hl-1">/</span><span class="hl-0">selection</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                 </span><span class="hl-0">общие</span><span class="hl-1"> </span><span class="hl-0">отметки</span><span class="hl-1"> </span><span class="hl-0">для</span><span class="hl-1"> </span><span class="hl-4">дозаказа</span><span class="hl-1"> (</span><span class="hl-0">Provider</span><span class="hl-1">)</span><br/><span class="hl-1">  </span><span class="hl-0">data</span><span class="hl-1">/</span><span class="hl-0">fixtures</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1">                    </span><span class="hl-0">демо</span><span class="hl-1">-</span><span class="hl-0">данные</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">CatalogScreen</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                </span><span class="hl-0">экран</span><span class="hl-1"> </span><span class="hl-0">каталога</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">TopicCard</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                    </span><span class="hl-0">карточка</span><span class="hl-1"> </span><span class="hl-0">в</span><span class="hl-1"> </span><span class="hl-0">списке</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">TopicScreen</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                  </span><span class="hl-0">экран</span><span class="hl-1"> </span><span class="hl-0">карточки</span><span class="hl-1"> </span><span class="hl-0">товара</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">StockBadge</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                   </span><span class="hl-0">метка</span><span class="hl-1"> «</span><span class="hl-6">В</span><span class="hl-1"> </span><span class="hl-0">наличии</span><span class="hl-1"> / </span><span class="hl-0">Мало</span><span class="hl-1"> / </span><span class="hl-0">Нет</span><span class="hl-1">»</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">StatusView</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                   </span><span class="hl-0">загрузка</span><span class="hl-1"> </span><span class="hl-0">и</span><span class="hl-1"> </span><span class="hl-0">сообщения</span><span class="hl-1"> </span><span class="hl-0">об</span><span class="hl-1"> </span><span class="hl-0">ошибках</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">Chip</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                         </span><span class="hl-0">кнопка</span><span class="hl-1">-</span><span class="hl-0">чип</span><br/><span class="hl-1">  </span><span class="hl-0">ui</span><span class="hl-1">/</span><span class="hl-0">TestModePanel</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">                </span><span class="hl-0">панель</span><span class="hl-1"> </span><span class="hl-0">тестового</span><span class="hl-1"> </span><span class="hl-0">режима</span>
+</code><button>Copy</button></pre>
+
+<p>Основная сущность называется <code>Topic</code>, как в методичке, но по смыслу это товар. <code>ProductDto</code> — то, что присылает сервер, <code>Topic</code> — то, с чем работает приложение. Экраны и карточки про HTTP ничего не знают.</p>
+<h2 id="metro-и-hermes" class="tsd-anchor-link">Metro и Hermes<a href="#metro-и-hermes" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>Metro — сборщик: собирает TypeScript-код проекта в один бандл и отдаёт его приложению, он же обеспечивает Fast Refresh. Hermes — движок, который выполняет этот JavaScript на телефоне. В Expo Go используется Hermes, это видно внизу списка каталога: строка «JS-движок: Hermes».</p>
+<h2 id="среда-разработки" class="tsd-anchor-link">Среда разработки<a href="#среда-разработки" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<table>
+<thead>
+<tr>
+<th>Инструмент</th>
+<th>Версия</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Git</td>
+<td></td>
+</tr>
+<tr>
+<td>Node.js (LTS)</td>
+<td></td>
+</tr>
+<tr>
+<td>npm</td>
+<td></td>
+</tr>
+<tr>
+<td>Expo SDK</td>
+<td></td>
+</tr>
+<tr>
+<td>Редактор</td>
+<td>VS Code</td>
+</tr>
+<tr>
+<td>Целевая платформа</td>
+<td>Android, Expo Go</td>
+</tr>
+</tbody>
+</table>
+<p>Стек: React Native + Expo + Expo Router + TypeScript, тесты на Jest (jest-expo).</p>
+<h2 id="статус" class="tsd-anchor-link">Статус<a href="#статус" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<ul>
+<li>Sprint 0: концепция, backlog и выбор API.</li>
+<li>Sprint 1: статическая витрина — список товаров на тестовых данных, переиспользуемая карточка <code>TopicCard</code>.</li>
+<li>Sprint 2: интерактивный каталог — <code>FlatList</code>, поиск, фильтры, отметка для дозаказа, hook <code>useCatalog</code>.</li>
+<li>Sprint 4: сетевой каталог — данные из DummyJSON, карточка по id, ошибки, повтор, демо-режим, логи.</li>
+<li>Sprint 3: навигация на Expo Router — вкладки, экран карточки <code>/topic/[id]</code>, прямая ссылка, возврат с сохранением списка, обработка неверных адресов.</li>
+</ul>
+</div></div>
+<div class="col-sidebar">
+<div class="page-menu">
+<div class="tsd-navigation settings">
+<details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>Settings</h3></summary>
+<div class="tsd-accordion-details">
+<div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span>
+<ul id="tsd-filter-options">
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-private" name="private"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Private</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
+<li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></div>
+<div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg>
+<h3>On This Page</h3></summary>
+<div class="tsd-accordion-details"><a href="#остаток"><span>Остаток</span></a>
+<ul>
+<li><a href="#о-приложении"><span>О приложении</span></a></li>
+<li><a href="#основной-сценарий"><span>Основной сценарий</span></a></li>
+<li><a href="#первая-версия-mvp"><span>Первая версия (<wbr/>MVP)</span></a></li>
+<li><a href="#запуск"><span>Запуск</span></a></li>
+<li><a href="#документация-кода-typedoc"><span>Документация кода (<wbr/>Type<wbr/>Doc)</span></a></li>
+<li><a href="#что-умеет-сейчас"><span>Что умеет сейчас</span></a></li>
+<li><a href="#навигация"><span>Навигация</span></a></li>
+<li><a href="#работа-с-сетью"><span>Работа с сетью</span></a></li>
+<li>
+<ul>
+<li><a href="#цепочка-запроса"><span>Цепочка запроса</span></a></li>
+<li><a href="#ошибки"><span>Ошибки</span></a></li>
+<li><a href="#стратегия-поиска-и-порций"><span>Стратегия поиска и порций</span></a></li>
+<li><a href="#отмена-и-гонки"><span>Отмена и гонки</span></a></li>
+<li><a href="#логи"><span>Логи</span></a></li>
+<li><a href="#демо-режим-и-тестовый-режим"><span>Демо-<wbr/>режим и тестовый режим</span></a></li></ul></li>
+<li><a href="#структура-проекта"><span>Структура проекта</span></a></li>
+<li><a href="#metro-и-hermes"><span>Metro и <wbr/>Hermes</span></a></li>
+<li><a href="#среда-разработки"><span>Среда разработки</span></a></li>
+<li><a href="#статус"><span>Статус</span></a></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html">Остаток</a>
+<ul class="tsd-small-nested-navigation" id="tsd-nav-container">
+<li>Loading...</li></ul></nav></div></div></div><footer>
+<p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer>
+<div class="overlay"></div></body></html>

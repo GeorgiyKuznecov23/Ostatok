@@ -1,7 +1,14 @@
+/**
+ * Тесты проверки ответа сервера (`parseProduct`, `parseProductList`, `toTopic`).
+ *
+ * @module
+ */
+
 import { describe, expect, test } from '@jest/globals';
 
 import { parseProduct, parseProductList, toTopic } from './productDto';
 
+/** Правильный товар — образец для тестов. В тестах из него делают испорченные варианты. */
 const product = {
   id: 1,
   title: 'Essence Mascara Lash Princess',

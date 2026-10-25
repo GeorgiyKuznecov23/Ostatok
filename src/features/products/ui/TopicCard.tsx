@@ -1,17 +1,39 @@
+/**
+ * Карточка одного товара в списке каталога.
+ *
+ * @module
+ */
+
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import type { Topic } from '../model/Topic';
 import { getCategoryLabel } from '../model/categories';
 import { StockBadge } from './StockBadge';
 
+/** Props карточки — всё, что она получает снаружи. */
 export type TopicCardProps = {
+  /** Товар, который нужно показать. Обязательный. */
   topic: Topic;
+  /** Что сделать при нажатии на карточку. Получает номер товара. Обязательный. */
   onPress: (id: string) => void;
+  /** Показывать ли описание. Необязательный, по умолчанию `true`. */
   showDescription?: boolean;
+  /** Отмечен ли товар «в дозаказ». По умолчанию `false`. */
   selected?: boolean;
+  /** Что сделать при нажатии «В дозаказ». Если не передан, кнопки нет. */
   onToggleSelect?: (id: string) => void;
 };
 
+/**
+ * Переиспользуемая карточка товара: картинка или заглушка, название, категория, артикул,
+ * описание, остаток, цена, цветная метка статуса и кнопка «В дозаказ».
+ *
+ * Карточка ничего не знает о том, откуда взялся товар: всё приходит через props.
+ * При нажатии отдаёт наружу только номер товара, а что с ним делать, решает экран.
+ *
+ * @param props - Товар и обработчики нажатий.
+ * @returns Нажимаемую карточку.
+ */
 export function TopicCard({
   topic,
   onPress,
@@ -73,6 +95,7 @@ export function TopicCard({
   );
 }
 
+/** Оформление карточки: обычный, отмеченный и нажатый вид. */
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',

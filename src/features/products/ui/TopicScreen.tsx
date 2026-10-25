@@ -1,3 +1,9 @@
+/**
+ * Экран карточки товара (маршрут `/topic/номер`).
+ *
+ * @module
+ */
+
 import { router, Stack, useLocalSearchParams, useNavigation } from 'expo-router';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -12,23 +18,45 @@ import { StockBadge } from './StockBadge';
 import { LoadingView, MessageView } from './StatusView';
 import { TestModePanel } from './TestModePanel';
 
-// Назад к списку, а если истории нет (открыли по ссылке) — в каталог
+/**
+ * Вернуться в каталог: если есть история переходов — обычный «Назад» (`router.back`),
+ * если карточку открыли по ссылке и истории нет — заменить экран каталогом (`router.replace`).
+ */
 function goToCatalog() {
   if (router.canGoBack()) router.back();
   else router.replace('/');
 }
 
+/**
+ * Экран карточки товара.
+ *
+ * Берёт номер из адреса, проверяет его и загружает товар. Показывает одно из состояний:
+ * неверный номер, демо-товар, загрузка, «Товар не найден», ошибка с повтором или сам товар.
+ *
+ * @returns Экран карточки.
+ */
 export function TopicScreen() {
+  /** Параметры из адреса: номер товара и признак демо-режима. */
   const params = useLocalSearchParams<{ id?: string | string[]; demo?: string }>();
+  /** Проверенный номер товара или `undefined`, если номер неверный. */
   const topicId = parseTopicId(params.id);
+  /** Открыта ли карточка из демо-режима (`?demo=1` в адресе). */
   const isDemo = params.demo === '1';
 
-  // Hook вызывается до любых return. В демо-режиме и без корректного id запроса нет.
+  /**
+   * Загрузка товара. Хук вызывается до любых `return` — это правило хуков.
+   * В демо-режиме и при неверном номере передаём `undefined`, тогда запроса нет.
+   */
   const { state, retry } = useTopic(isDemo ? undefined : topicId);
+  /** Общие отметки «в дозаказ» — те же, что в каталоге. */
   const selection = useSelection();
-  // router.canGoBack() нельзя вызывать до первой отрисовки, поэтому берём навигацию экрана
+  /**
+   * Навигация этого экрана. Через неё узнаём, есть ли куда вернуться.
+   * `router.canGoBack()` здесь нельзя: при открытии по ссылке роутер ещё не готов во время первой отрисовки.
+   */
   const navigation = useNavigation();
 
+  /** Настройка шапки: если вернуться некуда, слева вместо стрелки кнопка «В каталог». */
   const header = (
     <Stack.Screen
       options={{
@@ -43,6 +71,7 @@ export function TopicScreen() {
     />
   );
 
+  /** Нарисовать товар вместе с кнопкой «В дозаказ». */
   const renderTopic = (topic: Topic, demo: boolean) => (
     <TopicInfo
       topic={topic}
@@ -52,6 +81,7 @@ export function TopicScreen() {
     />
   );
 
+  /** Основная часть экрана: выбирает, что показать, по номеру, демо-режиму и состоянию загрузки. */
   const renderBody = () => {
     if (!topicId) {
       return (
@@ -116,13 +146,25 @@ export function TopicScreen() {
   );
 }
 
+/** Props блока с информацией о товаре. */
 type TopicInfoProps = {
+  /** Товар. */
   topic: Topic;
+  /** Из демо-данных ли товар. Если да, сверху метка «Демо-данные». */
   demo: boolean;
+  /** Отмечен ли товар «в дозаказ». */
   selected: boolean;
+  /** Что сделать при нажатии «В дозаказ». */
   onToggleSelect: (id: string) => void;
 };
 
+/**
+ * Информация о товаре: картинка, название, бренд, категория, остаток со статусом,
+ * артикул, цена, минимальная партия, описание и кнопка «В дозаказ».
+ *
+ * @param props - Товар, признак демо и отметка.
+ * @returns Прокручиваемый блок с информацией.
+ */
 function TopicInfo({ topic, demo, selected, onToggleSelect }: TopicInfoProps) {
   return (
     <ScrollView contentContainerStyle={styles.content}>
@@ -167,6 +209,12 @@ function TopicInfo({ topic, demo, selected, onToggleSelect }: TopicInfoProps) {
   );
 }
 
+/**
+ * Строка «название — значение», например «Артикул — BEA-ESS-ESS-001».
+ *
+ * @param props - `label` — название строки, `value` — значение.
+ * @returns Строку таблицы.
+ */
 function Row({ label, value }: { label: string; value: string }) {
   return (
     <View style={styles.row}>
@@ -176,6 +224,7 @@ function Row({ label, value }: { label: string; value: string }) {
   );
 }
 
+/** Оформление экрана карточки. */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
